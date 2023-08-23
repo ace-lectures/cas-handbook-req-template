@@ -1,0 +1,12 @@
+[#g6,reftext=G.6]
+=== (G.6) Limitations and Exclusions
+
+ifdef::env-draft[]
+TIP: _Aspects that the system need not address. It states what the system will not do. This chapter addresses a key quality attribute of good requirements: the requirements must be delimited (or “scoped”). <<g6>> is not, however, the place for an analysis of risks and obstacles, which pertain to the project rather than the goals and correspondingly appears in chapter <<p6>>._  <<BM22>>
+endif::[]
+
+While **{project-title}** is designed to enhance various aspects of food ordering and delivery, there are certain limitations and exclusions that the system will not encompass. It is important to define these boundaries to ensure a clear scope for the project and avoid misunderstandings.
+
+The system will not be responsible for the actual physical delivery process, which includes the transportation and handling of food items from the restaurant to the customer's location. Additionally, while the system offers real-time order tracking, it will not provide a guarantee of precise delivery times, as external factors such as traffic conditions and weather may influence delivery schedules. Furthermore, **{project-title}** will not address external payment processing, meaning it will not handle financial transactions directly; instead, it will interact with established payment gateways to securely process payments. Lastly, the system will not manage the sourcing or procurement of food ingredients, as this falls outside the intended scope of the project.
+
+By clearly delineating these limitations and exclusions, **{project-title}** aims to provide a focused and well-defined solution that aligns with the core objectives and functional areas of the food ordering and delivery domain.
