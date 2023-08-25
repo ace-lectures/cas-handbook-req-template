@@ -35,7 +35,7 @@ ifdef::author_5[]
 As I submit my work, I, **{author_5}**, take full responsibility for the integrity of my work and promise to avoid any form of plagiarism, cheating, or dishonest behavior. This acknowledgment serves as a testament to my dedication to academic excellence and the fostering of a trustworthy academic community at McMaster University.
 endif::[]
 
-ifdef::author_3[]
+ifdef::author_6[]
 [discrete]
 ==== {author_6}
 As I submit my work, I, **{author_6}**, take full responsibility for the integrity of my work and promise to avoid any form of plagiarism, cheating, or dishonest behavior. This acknowledgment serves as a testament to my dedication to academic excellence and the fostering of a trustworthy academic community at McMaster University.
