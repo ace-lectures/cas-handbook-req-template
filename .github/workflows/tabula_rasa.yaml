@@ -16,11 +16,8 @@ jobs:
     steps:
       - name: Delete all issues
         run: |
-          REPO_OWNER="${{ github.repository_owner }}"
-          REPO_NAME="${{ github.event.repository.name }}"
-
           echo "Fetching all open issues..."
-          ISSUES=$(gh api repos/$REPO_OWNER/$REPO_NAME/issues --jq ".[].number")
+          ISSUES=$(gh api repos/$${{ github.repository }}/issues --jq ".[].number")
           for NUMBER in $ISSUES; do
             echo "Deleting issue #$NUMBER"
             gh api -X DELETE repos/$REPO_OWNER/$REPO_NAME/issues/$NUMBER
