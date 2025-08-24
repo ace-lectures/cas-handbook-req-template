@@ -4,16 +4,21 @@ on:
   - fork
   - workflow_dispatch
 
+permissions:
+  issues:   write
+  contents: read
+
+
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   # Fall 2025 deadlines for milestones (23:59 Toronto --> 03:59 UTC)
-  M1:    "2025-10-13T03:59:59.0Z"
-  M2:    "2025-11-10T03:59:59.0Z"
-  FINAL: "2025-12-05T03:59:59.0Z"
+  M1_DUE:    "2025-10-13T03:59:59.0Z"
+  M2_DUE:    "2025-11-10T03:59:59.0Z"
+  FINAL_DUE: "2025-12-05T03:59:59.0Z"
   
 jobs:
-  init-milestones:
 
+  init-milestones:
     runs-on: ubuntu-latest
     steps:
       - name: Create Milestone 1
@@ -23,7 +28,7 @@ jobs:
             -f title="Milestone 1" \
             -f state="open" \
             -f description="First Window of Opportunity for feedback" \
-            -f due_on="${{ env.M1 }}"
+            -f due_on="${{ env.M1_DUE }}"
 
       - name: Create Milestone 2
         run: |
@@ -32,7 +37,7 @@ jobs:
             -f title="Milestone 2" \
             -f state="open" \
             -f description="Second Window of Opportunity for feedback" \
-            -f due_on="${{ env.M2 }}"
+            -f due_on="${{ env.M2_DUE }}"
 
       - name: Create Milestone 3
         run: |
@@ -41,4 +46,38 @@ jobs:
             -f title="Final Delivery" \
             -f state="open" \
             -f description="Delivery of the complete document" \
-            -f due_on="${{ env.FINAL }}"
+            -f due_on="${{ env.FINAL_DUE }}"
+
+  get-milestones:
+    runs-on: ubuntu-latest
+    needs: init-milestones
+    outputs:
+      milestone1: ${{ steps.lookup.outputs.m1 }}
+      milestone2: ${{ steps.lookup.outputs.m2 }}
+      milestone3: ${{ steps.lookup.outputs.m3 }}
+    steps:
+      - name: Lookup milestone IDs
+        id: lookup
+        run: |
+          M1=$(gh api repos/${{ github.repository }}/milestones --jq '.[] | select(.title=="Milestone 1") | .number')
+          M2=$(gh api repos/${{ github.repository }}/milestones --jq '.[] | select(.title=="Milestone 2") | .number')
+          M3=$(gh api repos/${{ github.repository }}/milestones --jq '.[] | select(.title=="Final Delivery") | .number')
+
+          echo "m1=$M1" >> $GITHUB_OUTPUT
+          echo "m2=$M2" >> $GITHUB_OUTPUT
+          echo "m3=$M3" >> $GITHUB_OUTPUT
+
+
+  init-goal-book:
+    runs-on: ubuntu-latest
+    needs: get-milestones
+    env:
+      MILESTONE_1: ${{ needs.get-milestones.outputs.milestone1 }}
+      MILESTONE_2: ${{ needs.get-milestones.outputs.milestone2 }}
+      MILESTONE_3: ${{ needs.get-milestones.outputs.milestone3 }}
+    steps:
+      - name: Show milestone env vars
+        run: |
+          echo "Milestone 1 ID = $MILESTONE_1"
+          echo "Milestone 2 ID = $MILESTONE_2"
+          echo "Milestone 3 ID = $MILESTONE_3"
