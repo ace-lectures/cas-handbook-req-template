@@ -41,7 +41,7 @@ pdf: $(INDEX) $(SVGs)
 ####
 
 clean:
-	rm -rf *.html *.pdf 
+	rm -rf index.html index.pdf 
 
 clobber: clean
 	rm -rf $(SVGs)
