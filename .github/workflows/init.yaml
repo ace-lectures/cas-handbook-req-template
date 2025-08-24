@@ -22,7 +22,7 @@ jobs:
             -f title="Milestone 1" \
             -f state="open" \
             -f description="First milestone" \
-            -f due_on= ${{ env.M1 }}
+            -f due_on=="${{ env.M1 }}"
 
       - name: Create Milestone 2
         run: |
@@ -31,7 +31,7 @@ jobs:
             -f title="Milestone 2" \
             -f state="open" \
             -f description="Second milestone" \
-            -f due_on=${{ env.M2 }}
+            -f due_on="${{ env.M2 }}"
 
       - name: Create Milestone 3
         run: |
@@ -40,4 +40,4 @@ jobs:
             -f title="Milestone 3" \
             -f state="open" \
             -f description="Third milestone" \
-            -f due_on=${{ env.M3 }}
+            -f due_on="${{ env.M3 }}"
