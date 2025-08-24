@@ -5,11 +5,11 @@ on:
   - workflow_dispatch
 
 env:
-  - GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   # Fall 2025 deadlines for milestones (23:59 Toronto --> 03:59 UTC)
-  - M1: "2025-10-13T03:59:59Z"
-  - M2: "2025-11-10T03:59:59Z"
-  - M3: "2025-12-05T03:59:59Z"
+  M1: "2025-10-13T03:59:59Z"
+  M2: "2025-11-10T03:59:59Z"
+  M3: "2025-12-05T03:59:59Z"
 
 jobs:
   init-milestones:
