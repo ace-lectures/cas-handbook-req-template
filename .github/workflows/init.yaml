@@ -251,7 +251,7 @@ jobs:
           # Create the issue and capture its number
           ISSUE_NUMBER=$(gh api repos/${{ github.repository }}/issues \
             -f title="S.6 - Verification and acceptance criteria" \
-            -f body="Specification of the conditions under which an implementation will be deemed satisfactory. Here, \"verification\" as shorthand for what is more explicitly called "Verification & Validation" (V&V), covering several levels of testing — module testing, integration testing, system testing, user acceptance testing — as well as other techniques such as static analysis and, when applicable, program proving." \
+            -f body="Specification of the conditions under which an implementation will be deemed satisfactory. Here, \"verification\" as shorthand for what is more explicitly called \"Verification & Validation\" (V&V), covering several levels of testing — module testing, integration testing, system testing, user acceptance testing — as well as other techniques such as static analysis and, when applicable, program proving." \
             -f milestone="$MILESTONE_2" \
             -F labels[]=system \
             --jq '.number')
@@ -379,7 +379,7 @@ jobs:
           # Create the issue and capture its number
           ISSUE_NUMBER=$(gh api repos/${{ github.repository }}/issues \
             -f title="P.4 - Tasks and deliverables" \
-            -f body="**This is the core of the Project book**. It details the individual tasks listed under P.3 and their expected outcomes. It define the project's main activities and the results they must produce, associated with the milestone dates defined in P.3. \
+            -f body="**This is the core of the Project book**. It details the individual tasks listed under P.3 and their expected outcomes. It define the project's main activities and the results they must produce, associated with the milestone dates defined in P.3." \
             -f milestone="$MILESTONE_3" \
             -F labels[]=project \
             --jq '.number')
