@@ -8,9 +8,10 @@ permissions:
   issues:   write
   contents: read
 
-
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  REPO_OWNER:   ${{ github.repository_owner }}
+  REPO_NAME:    ${{ github.event.repository.name }}
   # Fall 2025 deadlines for milestones (23:59 Toronto --> 03:59 UTC)
   M1_DUE:    "2025-10-13T03:59:59.0Z"
   M2_DUE:    "2025-11-10T03:59:59.0Z"
@@ -23,30 +24,48 @@ jobs:
     steps:
       - name: Create Milestone 1
         run: |
-          gh api \
-            repos/${{ github.repository }}/milestones \
-            -f title="Milestone 1" \
-            -f state="open" \
-            -f description="First Window of Opportunity for feedback" \
-            -f due_on="${{ env.M1_DUE }}"
+          MILESTONE_TITLE="Milestone 1"
+          EXISTS=$(gh api repos/${{ github.repository }}/milestones --jq ".[] | select(.title==\"$MILESTONE_TITLE\") | .number")
+          if [ -z "$EXISTS" ]; then
+            gh api \
+              repos/${{ github.repository }}/milestones \
+              -f title="$MILESTONE_TITLE" \
+              -f state="open" \
+              -f description="First Window of Opportunity for feedback" \
+              -f due_on="${{ env.M1_DUE }}"
+          else
+            echo "Milestone '$MILESTONE_TITLE' already exists (#$EXISTS)"
+          fi
 
       - name: Create Milestone 2
         run: |
-          gh api \
-            repos/${{ github.repository }}/milestones \
-            -f title="Milestone 2" \
-            -f state="open" \
-            -f description="Second Window of Opportunity for feedback" \
-            -f due_on="${{ env.M2_DUE }}"
+          MILESTONE_TITLE="Milestone 2"
+          EXISTS=$(gh api repos/${{ github.repository }}/milestones --jq ".[] | select(.title==\"$MILESTONE_TITLE\") | .number")
+          if [ -z "$EXISTS" ]; then
+            gh api \
+              repos/${{ github.repository }}/milestones \
+              -f title="$MILESTONE_TITLE" \
+              -f state="open" \
+              -f description="Second Window of Opportunity for feedback" \
+              -f due_on="${{ env.M1_DUE }}"
+          else
+            echo "Milestone '$MILESTONE_TITLE' already exists (#$EXISTS)"
+          fi
 
       - name: Create Milestone 3
         run: |
-          gh api \
-            repos/${{ github.repository }}/milestones \
-            -f title="Milestone 3 - Final" \
-            -f state="open" \
-            -f description="Delivery of the final document for grading" \
-            -f due_on="${{ env.FINAL_DUE }}"
+          MILESTONE_TITLE="Milestone 3 - Final"
+          EXISTS=$(gh api repos/${{ github.repository }}/milestones --jq ".[] | select(.title==\"$MILESTONE_TITLE\") | .number")
+          if [ -z "$EXISTS" ]; then
+            gh api \
+              repos/${{ github.repository }}/milestones \
+              -f title="$MILESTONE_TITLE" \
+              -f state="open" \
+              -f description="Complete document due, delivered for grading" \
+              -f due_on="${{ env.M1_DUE }}"
+          else
+            echo "Milestone '$MILESTONE_TITLE' already exists (#$EXISTS)"
+          fi
 
   get-milestones:
     runs-on: ubuntu-latest
@@ -70,32 +89,76 @@ jobs:
   create-tags:
     runs-on: ubuntu-latest
     steps:
-      - name: create tags
+      - name: create tag - update
         run: |
-          gh api repos/${{ github.repository }}/labels \
-                -f name="update" \
-                -f color="CCCCCC" \
-                -f description="Updating a pre-existing section"
-
-          gh api repos/${{ github.repository }}/labels \
-                -f name="goal" \
-                -f color="CA0020" \
-                -f description="Goal-related sections"
-
-          gh api repos/${{ github.repository }}/labels \
-                -f name="system" \
-                -f color="F4A582" \
-                -f description="System-related sections"
-          
-          gh api repos/${{ github.repository }}/labels \
-                -f name="environment" \
-                -f color="92C5DE" \
-                -f description="Environment-related sections"
-
-          gh api repos/${{ github.repository }}/labels \
-                -f name="project" \
-                -f color="0571B0" \
-                -f description="Project-related sections"
+          LABEL_NAME="update"
+          LABEL_COLOR="CCCCCC"
+          LABEL_DESCR="Updating a pre-existing section"
+          EXISTS=$(gh api repos/${{ github.repository }}/labels --jq ".[] | select(.name==\"$LABEL_NAME\") | .name")
+          if [ -z "$EXISTS" ]; then
+            gh api repos/${{ github.repository }}/labels \
+                  -f name="$LABEL_NAME" \
+                  -f color="$LABEL_COLOR" \
+                  -f description="$LABEL_DESCR"
+          else
+            echo "Label '$LABEL_NAME' already exists"
+          fi
+      - name: create tag - system
+        run: |
+          LABEL_NAME="system"
+          LABEL_COLOR="F4A582"
+          LABEL_DESCR="System-related sections"
+          EXISTS=$(gh api repos/${{ github.repository }}/labels --jq ".[] | select(.name==\"$LABEL_NAME\") | .name")
+          if [ -z "$EXISTS" ]; then
+            gh api repos/${{ github.repository }}/labels \
+                  -f name="$LABEL_NAME" \
+                  -f color="$LABEL_COLOR" \
+                  -f description="$LABEL_DESCR"
+          else
+            echo "Label '$LABEL_NAME' already exists"
+          fi
+      - name: create tag - project
+        run: |
+          LABEL_NAME="project"
+          LABEL_COLOR="CCCCCC"
+          LABEL_DESCR="Updating a pre-existing section"
+          EXISTS=$(gh api repos/${{ github.repository }}/labels --jq ".[] | select(.name==\"$LABEL_NAME\") | .name")
+          if [ -z "$EXISTS" ]; then
+            gh api repos/${{ github.repository }}/labels \
+                  -f name="$LABEL_NAME" \
+                  -f color="$LABEL_COLOR" \
+                  -f description="$LABEL_DESCR"
+          else
+            echo "Label '$LABEL_NAME' already exists"
+          fi
+      - name: create tag - environment
+        run: |
+          LABEL_NAME="environment"
+          LABEL_COLOR="92C5DE"
+          LABEL_DESCR="Environment-related sections"
+          EXISTS=$(gh api repos/${{ github.repository }}/labels --jq ".[] | select(.name==\"$LABEL_NAME\") | .name")
+          if [ -z "$EXISTS" ]; then
+            gh api repos/${{ github.repository }}/labels \
+                  -f name="$LABEL_NAME" \
+                  -f color="$LABEL_COLOR" \
+                  -f description="$LABEL_DESCR"
+          else
+            echo "Label '$LABEL_NAME' already exists"
+          fi
+      - name: create tag - goal
+        run: |
+          LABEL_NAME="goal"
+          LABEL_COLOR="0571B0"
+          LABEL_DESCR="Project-related sections"
+          EXISTS=$(gh api repos/${{ github.repository }}/labels --jq ".[] | select(.name==\"$LABEL_NAME\") | .name")
+          if [ -z "$EXISTS" ]; then
+            gh api repos/${{ github.repository }}/labels \
+                  -f name="$LABEL_NAME" \
+                  -f color="$LABEL_COLOR" \
+                  -f description="$LABEL_DESCR"
+          else
+            echo "Label '$LABEL_NAME' already exists"
+          fi
         
   init-goal-book:
     runs-on: ubuntu-latest
