@@ -11,8 +11,6 @@ permissions:
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  PROJECT_TPL_OWNER: "ace-lectures"
-  PROJECT_TPL_ID:    "4"
   # Fall 2025 deadlines for milestones (23:59 Toronto --> 03:59 UTC)
   M1_DUE:    "2025-10-13T03:59:59.0Z"
   M2_DUE:    "2025-11-10T03:59:59.0Z"
@@ -69,6 +67,11 @@ jobs:
           echo "m2=$M2" >> $GITHUB_OUTPUT
           echo "m3=$M3" >> $GITHUB_OUTPUT
 
+          gh api repos/${{ github.repository }}/labels \
+                -f name="update" \
+                -f color="CCCCCC" \
+                -f description="Updating a pre-existing section"
+
   
   init-goal-book:
     runs-on: ubuntu-latest
@@ -82,8 +85,8 @@ jobs:
         run: |
           gh api repos/${{ github.repository }}/labels \
                 -f name="goal" \
-                -f color="09630F" \
-                -f description="Goal-related tasks"
+                -f color="CA0020" \
+                -f description="Goal-related sections"
       - name: Create G1
         run: |
           # Create the issue and capture its number
@@ -92,6 +95,85 @@ jobs:
             -f body="High-level view of the project: organizational context and reason for building a system. It explains why the project is needed, recalls the business context, and presents the general business objectives" \
             -f milestone="$MILESTONE_1" \
             -F labels[]=goal \
+            --jq '.number')
+
+          echo "Created issue #$ISSUE_NUMBER"
+
+  init-system-book:
+    runs-on: ubuntu-latest
+    needs: [get-milestones]
+    env:
+      MILESTONE_1: ${{ needs.get-milestones.outputs.milestone1 }}
+      MILESTONE_2: ${{ needs.get-milestones.outputs.milestone2 }}
+      MILESTONE_3: ${{ needs.get-milestones.outputs.milestone3 }}
+    steps:
+      - name: Create system tag
+        run: |
+          gh api repos/${{ github.repository }}/labels \
+                -f name="system" \
+                -f color="F4A582" \
+                -f description="System-related sections"
+      - name: Create S1
+        run: |
+          # Create the issue and capture its number
+          ISSUE_NUMBER=$(gh api repos/${{ github.repository }}/issues \
+            -f title="S.1 - Components" \
+            -f body="Overall structure expressed by the list of major software and, if applicable, hardware parts." \
+            -f milestone="$MILESTONE_2" \
+            -F labels[]=system \
+            --jq '.number')
+
+          echo "Created issue #$ISSUE_NUMBER"
+
+  init-environment-book:
+    runs-on: ubuntu-latest
+    needs: [get-milestones]
+    env:
+      MILESTONE_1: ${{ needs.get-milestones.outputs.milestone1 }}
+      MILESTONE_2: ${{ needs.get-milestones.outputs.milestone2 }}
+      MILESTONE_3: ${{ needs.get-milestones.outputs.milestone3 }}
+    steps:
+      - name: Create environment tag
+        run: |
+          gh api repos/${{ github.repository }}/labels \
+                -f name="environment" \
+                -f color="92C5DE" \
+                -f description="Environment-related sections"
+      - name: Create E1
+        run: |
+          # Create the issue and capture its number
+          ISSUE_NUMBER=$(gh api repos/${{ github.repository }}/issues \
+            -f title="E.1 - Glossary" \
+            -f body="Clear and precise definitions of all the vocabulary specific to the application domain, including technical terms, words from ordinary language used in a special meaning, and acronyms. It introduces the terminology of the project; not just of the environment in the strict sense, but of all its parts." \
+            -f milestone="$MILESTONE_3" \
+            -F labels[]=environment \
+            --jq '.number')
+
+          echo "Created issue #$ISSUE_NUMBER"
+
+  init-project-book:
+    runs-on: ubuntu-latest
+    needs: [get-milestones]
+    env:
+      MILESTONE_1: ${{ needs.get-milestones.outputs.milestone1 }}
+      MILESTONE_2: ${{ needs.get-milestones.outputs.milestone2 }}
+      MILESTONE_3: ${{ needs.get-milestones.outputs.milestone3 }}
+    steps:
+      - name: Create project tag
+        run: |
+          gh api repos/${{ github.repository }}/labels \
+                -f name="project" \
+                -f color="0571B0" \
+                -f description="Project-related sections"
+      - name: Create S1
+        run: |
+          # Create the issue and capture its number
+          ISSUE_NUMBER=$(gh api repos/${{ github.repository }}/issues \
+            -f title="P.1 - Roles & Personel" \
+            -f body="Main responsibilities in the project; required project staff and their needed qualifications. It defines the roles (as a human responsibility) involved in the project." \
+            -f milestone="$MILESTONE_2" \
+            -F labels[]=environment \
+            -F labels[]=update \
             --jq '.number')
 
           echo "Created issue #$ISSUE_NUMBER"
