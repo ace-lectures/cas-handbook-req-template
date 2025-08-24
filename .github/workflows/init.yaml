@@ -19,7 +19,7 @@ jobs:
             -f title="Milestone 1" \
             -f state="open" \
             -f description="First milestone" \
-            -f due_on=="2025-10-13T03:59:59.0Z"
+            -f due_on="2025-10-13T03:59:59.0Z"
 
       - name: Create Milestone 2
         run: |
