@@ -76,8 +76,17 @@ jobs:
       MILESTONE_2: ${{ needs.get-milestones.outputs.milestone2 }}
       MILESTONE_3: ${{ needs.get-milestones.outputs.milestone3 }}
     steps:
-      - name: Show milestone env vars
+      - name: Create G1
         run: |
-          echo "Milestone 1 ID = $MILESTONE_1"
-          echo "Milestone 2 ID = $MILESTONE_2"
-          echo "Milestone 3 ID = $MILESTONE_3"
+          # Create the issue and capture its number
+          ISSUE_NUMBER=$(gh api repos/${{ github.repository }}/issues \
+            -f title="G.1 - Context and Overall objectives" \
+            -f body="High-level view of the project: organizational context and reason for building a system. It explains why the project is needed, recalls the business context, and presents the general business objectives" \
+            -f milestone="$MILESTONE_1" \
+            --jq '.number')
+
+          echo "Created issue #$ISSUE_NUMBER"
+
+          # Add the 'goal' label
+          gh api repos/${{ github.repository }}/issues/$ISSUE_NUMBER/labels \
+            -f labels='["goal"]'
