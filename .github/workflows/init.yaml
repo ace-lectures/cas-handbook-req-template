@@ -184,6 +184,7 @@ jobs:
             echo "Created issue #$ISSUE_NUMBER"
           else
             echo "Issue '$TITLE' already exists (#$EXISTS)"
+          fi
 
       - name: Create G2
         run: |
@@ -201,7 +202,8 @@ jobs:
             echo "Created issue #$ISSUE_NUMBER"
           else
             echo "Issue '$TITLE' already exists (#$EXISTS)"
-            
+          fi
+
       - name: Create G3
         run: |
           # Create the issue and capture its number
