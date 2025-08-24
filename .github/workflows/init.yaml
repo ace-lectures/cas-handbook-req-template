@@ -75,7 +75,7 @@ jobs:
       MILESTONE_2: ${{ needs.get-milestones.outputs.milestone2 }}
       MILESTONE_3: ${{ needs.get-milestones.outputs.milestone3 }}
     steps:
-      - name: Create Goal tag
+      - name: Create goal tag
         run: |
           gh api repos/${{ github.repository }}/labels \
                 -f name="goal" \
@@ -88,10 +88,7 @@ jobs:
             -f title="G.1 - Context and Overall objectives" \
             -f body="High-level view of the project: organizational context and reason for building a system. It explains why the project is needed, recalls the business context, and presents the general business objectives" \
             -f milestone="$MILESTONE_1" \
+            -F labels[]=goal \
             --jq '.number')
 
           echo "Created issue #$ISSUE_NUMBER"
-
-          # Add the 'goal' label
-          gh api repos/${{ github.repository }}/issues/$ISSUE_NUMBER/labels \
-            -f labels='["goal"]'
