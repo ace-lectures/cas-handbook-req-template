@@ -6,13 +6,10 @@ on:
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  # Fall 2025 deadlines for milestones (23:59 Toronto --> 03:59 UTC)
-  M1: "2025-10-13T03:59:59.0Z"
-  M2: "2025-11-10T03:59:59.0Z"
-  M3: "2025-12-05T03:59:59.0Z"
-
+  
 jobs:
   init-milestones:
+    # Fall 2025 deadlines for milestones (23:59 Toronto --> 03:59 UTC)
     runs-on: ubuntu-latest
     steps:
       - name: Create Milestone 1
@@ -22,7 +19,7 @@ jobs:
             -f title="Milestone 1" \
             -f state="open" \
             -f description="First milestone" \
-            -f due_on=="${{ env.M1 }}"
+            -f due_on=="2025-10-13T03:59:59.0Z"
 
       - name: Create Milestone 2
         run: |
@@ -31,7 +28,7 @@ jobs:
             -f title="Milestone 2" \
             -f state="open" \
             -f description="Second milestone" \
-            -f due_on="${{ env.M2 }}"
+            -f due_on="2025-11-10T03:59:59.0Z"
 
       - name: Create Milestone 3
         run: |
@@ -40,4 +37,4 @@ jobs:
             -f title="Milestone 3" \
             -f state="open" \
             -f description="Third milestone" \
-            -f due_on="${{ env.M3 }}"
+            -f due_on="2025-12-05T03:59:59.0Z"
