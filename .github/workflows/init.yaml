@@ -170,26 +170,38 @@ jobs:
     steps:
       - name: Create G1
         run: |
-          # Create the issue and capture its number
-          ISSUE_NUMBER=$(gh api repos/${{ github.repository }}/issues \
-            -f title="G.1 - Context and Overall objectives" \
-            -f body="High-level view of the project: organizational context and reason for building a system. It explains why the project is needed, recalls the business context, and presents the general business objectives" \
-            -f milestone="$MILESTONE_1" \
-            -F labels[]=goal \
-            --jq '.number')
+          TITLE="G.1 - Context and Overall objectives"
+          DESCR="High-level view of the project: organizational context and reason for building a system. It explains why the project is needed, recalls the business context, and presents the general business objectives"
+          MILESTONE="$MILESTONE_1"
+          EXISTS=$(gh api repos/${{ github.repository }}/issues --jq ".[] | select(.title==\"$TITLE\") | .number")
+          if [ -z "$EXISTS" ]; then
+            ISSUE_NUMBER=$(gh api repos/${{ github.repository }}/issues \
+              -f title="$TITLE" \
+              -f body="$DESCR" \
+              -f milestone="$MILESTONE" \
+              -F labels[]=goal \
+              --jq '.number')
+            echo "Created issue #$ISSUE_NUMBER"
+          else
+            echo "Issue '$TITLE' already exists (#$EXISTS)"
 
-          echo "Created issue #$ISSUE_NUMBER"
       - name: Create G2
         run: |
-          # Create the issue and capture its number
-          ISSUE_NUMBER=$(gh api repos/${{ github.repository }}/issues \
-            -f title="G.2 - Current situation" \
-            -f body="Current state of processes to be addressed by the project and the resulting system. It describes the current situation, upon which the system is expected to improve" \
-            -f milestone="$MILESTONE_1" \
-            -F labels[]=goal \
-            --jq '.number')
-
-          echo "Created issue #$ISSUE_NUMBER"
+          TITLE="G.2 - Current situation"
+          DESCR="Current state of processes to be addressed by the project and the resulting system. It describes the current situation, upon which the system is expected to improve"
+          MILESTONE="$MILESTONE_1"
+          EXISTS=$(gh api repos/${{ github.repository }}/issues --jq ".[] | select(.title==\"$TITLE\") | .number")
+          if [ -z "$EXISTS" ]; then
+            ISSUE_NUMBER=$(gh api repos/${{ github.repository }}/issues \
+              -f title="$TITLE" \
+              -f body="$DESCR" \
+              -f milestone="$MILESTONE" \
+              -F labels[]=goal \
+              --jq '.number')
+            echo "Created issue #$ISSUE_NUMBER"
+          else
+            echo "Issue '$TITLE' already exists (#$EXISTS)"
+            
       - name: Create G3
         run: |
           # Create the issue and capture its number
