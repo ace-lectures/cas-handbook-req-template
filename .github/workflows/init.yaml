@@ -6,6 +6,7 @@ on:
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  M1: "2025-10-13T03:59:59.0Z"
   
 jobs:
   init-milestones:
@@ -19,7 +20,7 @@ jobs:
             -f title="Milestone 1" \
             -f state="open" \
             -f description="First milestone" \
-            -f due_on="2025-10-13T03:59:59.0Z"
+            -f due_on="${{ env.M1 }}"
 
       - name: Create Milestone 2
         run: |
