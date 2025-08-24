@@ -207,7 +207,7 @@ jobs:
           # Create the issue and capture its number
           ISSUE_NUMBER=$(gh api repos/${{ github.repository }}/issues \
             -f title="S.2 - Functionality" \
-            -f body="**This is the bulk of the System book, describing elements of functionality (behaviors)**. This chapter corresponds to the traditional view of requirements as defining "**what the system does**”. It is organized as one section, S.2.n, for each of the components identified in <<s1>>, describing the corresponding behaviors (functional and non-functional properties)." \
+            -f body="**This is the bulk of the System book, describing elements of functionality (behaviors)**. This chapter corresponds to the traditional view of requirements as defining \"**what the system does**\". It is organized as one section, S.2.n, for each of the components identified in S.1, describing the corresponding behaviors (functional and non-functional properties)." \
             -f milestone="$MILESTONE_2" \
             -F labels[]=system \
             --jq '.number')
@@ -251,7 +251,7 @@ jobs:
           # Create the issue and capture its number
           ISSUE_NUMBER=$(gh api repos/${{ github.repository }}/issues \
             -f title="S.6 - Verification and acceptance criteria" \
-            -f body="Specification of the conditions under which an implementation will be deemed satisfactory. Here, "verification" as shorthand for what is more explicitly called "Verification & Validation" (V&V), covering several levels of testing — module testing, integration testing, system testing, user acceptance testing — as well as other techniques such as static analysis and, when applicable, program proving." \
+            -f body="Specification of the conditions under which an implementation will be deemed satisfactory. Here, \"verification\" as shorthand for what is more explicitly called "Verification & Validation" (V&V), covering several levels of testing — module testing, integration testing, system testing, user acceptance testing — as well as other techniques such as static analysis and, when applicable, program proving." \
             -f milestone="$MILESTONE_2" \
             -F labels[]=system \
             --jq '.number')
@@ -357,7 +357,7 @@ jobs:
           # Create the issue and capture its number
           ISSUE_NUMBER=$(gh api repos/${{ github.repository }}/issues \
             -f title="P.2 - Imposed technical choices" \
-            -f body="Any a priori choices binding the project to specific tools, hardware, languages or other technical parameters. Not all technical choices in projects derive from a pure technical analysis; some result from company policies. While some project members may dislike non-strictly-technical decisions, they are a fact of project life and must be documented, in particular for the benefit of one of the quality factors for requirements: "requirements must be justified"." \
+            -f body="Any a priori choices binding the project to specific tools, hardware, languages or other technical parameters. Not all technical choices in projects derive from a pure technical analysis; some result from company policies. While some project members may dislike non-strictly-technical decisions, they are a fact of project life and must be documented, in particular for the benefit of one of the quality factors for requirements: \"requirements must be justified\"." \
             -f milestone="$MILESTONE_3" \
             -F labels[]=project \
             --jq '.number')
@@ -401,7 +401,7 @@ jobs:
           # Create the issue and capture its number
           ISSUE_NUMBER=$(gh api repos/${{ github.repository }}/issues \
             -f title="P.6 - Risk and mitigation analysis" \
-            -f body="Potential obstacles to meeting the schedule of <<p4>>, and measures for adapting the plan if they do arise. It is essential to be on the lookout for events that could derail the project, and devise mitigation strategies. It can include a SWOT analysis (Strengths, Weaknesses, Opportunities, Threats) for the project." \
+            -f body="Potential obstacles to meeting the schedule of P.4, and measures for adapting the plan if they do arise. It is essential to be on the lookout for events that could derail the project, and devise mitigation strategies. It can include a SWOT analysis (Strengths, Weaknesses, Opportunities, Threats) for the project." \
             -f milestone="$MILESTONE_1" \
             -F labels[]=project \
             --jq '.number')
