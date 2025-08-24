@@ -7,6 +7,9 @@ permissions:
   contents: read
   issues: write
 
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   cleanup-repo:
     runs-on: ubuntu-latest
