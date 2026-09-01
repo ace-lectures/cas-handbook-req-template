@@ -1,0 +1,4 @@
+// Appendices. Add one include per appendix file; each included file carries its
+// own [appendix] annotation. Delete the example below once you add your own.
+
+include::A_example.adoc[]

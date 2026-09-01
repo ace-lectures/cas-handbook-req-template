@@ -1,0 +1,16 @@
+[appendix]
+== An example appendix
+
+ifdef::env-draft[]
+TIP: _This is an example appendix, shown only while `:env-draft:` is set in
+`metadata.adoc`. Use appendices for material that supports the document without
+belonging in one of the four books: interview transcripts, questionnaires, raw
+elicitation notes, large tables, detailed mockups._
+endif::[]
+
+An appendix is a regular AsciiDoc section carrying the `[appendix]` annotation on
+the line above its title. Asciidoctor then numbers it as _Appendix A_, _Appendix B_,
+and so on, rather than as a chapter.
+
+To add your own, create a file in the `appendix` directory and include it from
+`appendix/index.adoc`.
