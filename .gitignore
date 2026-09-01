@@ -2,3 +2,6 @@
 *.svg
 *.html
 *~
+
+# plan.pdf ships with the template (Meyer, chapter 3); keep it tracked
+!plan.pdf

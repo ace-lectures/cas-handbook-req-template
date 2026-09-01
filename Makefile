@@ -3,8 +3,10 @@
 # /!\ Run make check_env to check that your setup is correct
 
 .DEFAULT_GOAL := pdf
-INDEX   = index.adoc          # Root file for the requirement plan
-THEME   = _style/mcmaster.yml # Location of the PDF stylesheet
+# Root file for the requirement plan
+INDEX   = index.adoc
+# Location of the PDF stylesheet
+THEME   = _style/mcmaster.yml
 
 ####
 # Building PlantUML models

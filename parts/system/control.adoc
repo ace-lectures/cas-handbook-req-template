@@ -1,9 +1,10 @@
 [discrete]
 === Control Information
 
-[cols="^1,^1,^1,2,^1,2"]
+.{project-title} -- Versioning Information -- System Book
+[cols="^1,^1,^2,^2,^2,^2"]
 |===
-|Section | Version | Lead | Delivered | Reviewer | Approved 
+|Section | Version | Lead | Delivered | Reviewer | Approved
 
 | **<<s1>>** | | | | |
 | **<<s2>>** | | | | |

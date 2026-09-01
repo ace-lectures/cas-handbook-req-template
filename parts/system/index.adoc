@@ -1,6 +1,8 @@
 == (S) System
 
-NOTE: _the System book refines the Goal one by focusing on more detailed requirements._
+ifdef::env-draft[]
+NOTE: _The System book refines the Goals one by focusing on more detailed requirements. It describes the system itself: its components, its functionality, and the criteria by which an implementation will be judged satisfactory._ <<BM22>>
+endif::[]
 
 include::control.adoc[]
 

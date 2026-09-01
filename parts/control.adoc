@@ -1,5 +1,7 @@
 == Control Information
 
+This document is submitted for **Milestone {milestone}** of {course-number}, {course-term}.
+
 [cols="^1,^2,^2,^2,^2"]
 |===
 .2+| *Version* 2+| *Delivery* 2+| *Feedback*

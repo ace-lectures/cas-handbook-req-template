@@ -1,15 +1,15 @@
 [discrete]
 === Control Information
 
-.{project-title} -- Versionning Information -- Environment Book
+.{project-title} -- Versioning Information -- Environment Book
 [cols="^1,^1,^2,^2,^2,^2"]
 |===
-|Section | Version | Lead | Delivered | Reviewer | Approved 
+|Section | Version | Lead | Delivered | Reviewer | Approved
 
-| **<<e1>>** |  |  |  |  |
-| **<<e2>>** |  |  |  |  |
-| **<<e3>>** |  |  |  |  |
-| **<<e4>>** |  |  |  |  |
-| **<<e5>>** |  |  |  |  |
-| **<<e6>>** |  |  |  |  |
+| **<<e1>>** | | | | |
+| **<<e2>>** | | | | |
+| **<<e3>>** | | | | |
+| **<<e4>>** | | | | |
+| **<<e5>>** | | | | |
+| **<<e6>>** | | | | |
 |===

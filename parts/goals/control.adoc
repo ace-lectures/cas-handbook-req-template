@@ -1,16 +1,16 @@
 [discrete]
 === Control Information
 
-.{project-title} -- Versionning Information -- Goal Book
+.{project-title} -- Versioning Information -- Goals Book
 [cols="^1,^1,^2,^2,^2,^2"]
 |===
-|Section | Version | Lead | Delivered on| Reviewer | Approved on
+|Section | Version | Lead | Delivered | Reviewer | Approved
 
-| **<<g1>>** |  |  |  |  |
-| **<<g2>>** |  |  |  |  |
-| **<<g3>>** |  |  |  |  |
-| **<<g4>>** |  |  |  |  |
-| **<<g5>>** |  |  |  |  |
-| **<<g6>>** |  |  |  |  |
-| **<<g7>>** |  |  |  |  |
+| **<<g1>>** | | | | |
+| **<<g2>>** | | | | |
+| **<<g3>>** | | | | |
+| **<<g4>>** | | | | |
+| **<<g5>>** | | | | |
+| **<<g6>>** | | | | |
+| **<<g7>>** | | | | |
 |===

@@ -1,5 +1,9 @@
 == (P) Project
 
+ifdef::env-draft[]
+NOTE: _The Project book describes not the system but the process that produces it: roles, schedule, tasks and deliverables, required technology, and the risks that could derail it._ <<BM22>>
+endif::[]
+
 include::control.adoc[]
 
 include::P1.adoc[]
@@ -15,4 +19,3 @@ include::P5.adoc[]
 include::P6.adoc[]
 
 include::P7.adoc[]
-
