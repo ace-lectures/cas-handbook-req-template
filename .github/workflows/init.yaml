@@ -10,21 +10,27 @@ name: Initialize project tracking
 # *upstream* template repository, not on the new copy, so it would have created
 # the issues in the instructor's repository instead of the student's.
 
+# Deadlines are Toronto local time (23:59 on the due date), written with an
+# explicit UTC offset: -04:00 while daylight time is in effect, -05:00 after it
+# ends on the first Sunday of November. Keep the offset on the local date rather
+# than converting to Z -- 23:59 Toronto is the *next* day in UTC, and GitHub
+# renders a milestone due date as a plain date, which would show a day late.
+
 on:
   workflow_dispatch:
     inputs:
       m1_due:
-        description: "Milestone 1 deadline (UTC, ISO 8601)"
+        description: "Milestone 1 deadline (ISO 8601, with offset)"
         required: true
-        default: "2025-10-13T03:59:59Z"
+        default: "2026-10-18T23:59:59-04:00"
       m2_due:
-        description: "Milestone 2 deadline (UTC, ISO 8601)"
+        description: "Milestone 2 deadline (ISO 8601, with offset)"
         required: true
-        default: "2025-11-10T03:59:59Z"
+        default: "2026-11-15T23:59:59-05:00"
       final_due:
-        description: "Final delivery deadline (UTC, ISO 8601)"
+        description: "Final delivery deadline (ISO 8601, with offset)"
         required: true
-        default: "2025-12-05T03:59:59Z"
+        default: "2026-12-10T23:59:59-05:00"
 
 permissions:
   issues: write

@@ -52,7 +52,7 @@ The `metadata.adoc` file contains all the metadata for your document:
   - The first line defines the authors (`Name <email>`), separated by semicolons. The template supports up to six authors.
   - `:project-title:` is the name of your project. You can refer to it in your text by using `{project-title}`.
   - `:course-number:` refers to the course code associated to this delivery (e.g., `3RA3`, `4G06`)
-  - `:course-term:` refers to the term associated to this course (e.g., `Fall 2025`)
+  - `:course-term:` refers to the term associated to this course (e.g., `Fall 2026`)
   - `:revnumber:` is the _REV_ ision _NUMBER_ of the document (should start at 1)
   - `:milestone:` is the milestone this version is submitted for (`1`, `2` or `3`); it is printed in the Control Information section
   - `:env-draft:` is a boolean variable to include the _hints_ about the content of each section in the section. Comment this line (`// :env-draft:`) to remove the hints in your final delivery
