@@ -1,0 +1,7 @@
+[
+  { "name": "goal",        "color": "0571B0", "description": "Goals book sections" },
+  { "name": "system",      "color": "F4A582", "description": "System book sections" },
+  { "name": "environment", "color": "92C5DE", "description": "Environment book sections" },
+  { "name": "project",     "color": "CA0020", "description": "Project book sections" },
+  { "name": "update",      "color": "CCCCCC", "description": "Updating a pre-existing section" }
+]
